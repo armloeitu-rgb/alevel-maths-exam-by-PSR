@@ -36,7 +36,7 @@ const topicMeta: Record<string, { emoji: string; badgeBg: string; textCol: strin
   expo_log: { emoji: '🚀', badgeBg: 'bg-purple-100/80 text-purple-700', textCol: 'text-purple-900' },
   trigonometry: { emoji: '📐', badgeBg: 'bg-teal-100/80 text-teal-700', textCol: 'text-teal-900' },
   vectors: { emoji: '🧭', badgeBg: 'bg-blue-100/80 text-blue-700', textCol: 'text-blue-900' },
-  sequences_series: { emoji: '🪜', badgeBg: 'bg-lime-100/80 text-lime-800', textCol: 'text-lime-950' },
+  sequences_series: { emoji: '📈', badgeBg: 'bg-lime-100/80 text-lime-800', textCol: 'text-lime-950' },
   calculus: { emoji: '⚡', badgeBg: 'bg-fuchsia-100/80 text-fuchsia-700', textCol: 'text-fuchsia-900' },
   counting_probability: { emoji: '🎲', badgeBg: 'bg-yellow-100/80 text-yellow-800', textCol: 'text-yellow-950' },
   complex_numbers: { emoji: '🔮', badgeBg: 'bg-indigo-100/80 text-indigo-700', textCol: 'text-indigo-900' },
