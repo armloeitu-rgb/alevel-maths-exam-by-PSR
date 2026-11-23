@@ -29,20 +29,20 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Left: Brand / Title */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-100 font-bold text-lg">
-            ∑
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-violet-600 to-pink-500 flex items-center justify-center text-white shadow-md shadow-indigo-100 font-bold text-xl select-none">
+            🦉
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-slate-800 tracking-tight text-base sm:text-lg">
+              <span className="font-extrabold text-slate-900 tracking-tight text-base sm:text-lg">
                 A-Level Math Sim
               </span>
-              <span className="text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60 px-2 py-0.5 rounded-full">
-                ม.ปลาย
+              <span className="text-[11px] font-bold bg-gradient-to-r from-amber-100 to-rose-100 text-rose-700 border border-rose-200/60 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-2xs">
+                <span>✨</span> ม.ปลาย
               </span>
             </div>
             <p className="text-xs text-slate-500 hidden sm:block">
-              {stage === 'exam' ? examTitle : 'ระบบจำลองข้อสอบและเฉลยละเอียดแบบ Step-by-Step'}
+              {stage === 'exam' ? examTitle : 'ระบบจำลองข้อสอบ 100 ข้อ พร้อมเฉลยละเอียดแบบ Step-by-Step'}
             </p>
           </div>
         </div>
