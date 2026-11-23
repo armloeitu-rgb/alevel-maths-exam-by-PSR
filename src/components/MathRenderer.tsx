@@ -36,6 +36,23 @@ export const MathRenderer: React.FC<MathRendererProps> = ({
       }
     }
 
+    // Fallback: If content has no delimiters but contains LaTeX syntax and no Thai characters
+    if (
+      !content.includes('$') &&
+      /\\([a-zA-Z]+)|(\^|\_)\{?[0-9a-zA-Z]/.test(content) &&
+      !/[\u0E00-\u0E7F]/.test(content)
+    ) {
+      try {
+        const html = katex.renderToString(content.trim(), {
+          displayMode: block,
+          throwOnError: false,
+        });
+        return [{ type: block ? 'math-block' : 'math-inline', content: content.trim(), html }];
+      } catch {
+        // Fall back to standard regex processing
+      }
+    }
+
     const parts: RenderPart[] = [];
     const mathRegex = /(\$\$[\s\S]*?\$\$|\$[^$\n]+?\$)/g;
 

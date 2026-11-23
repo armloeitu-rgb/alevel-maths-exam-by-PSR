@@ -316,7 +316,7 @@ export const ResultView: React.FC<ResultViewProps> = ({
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     {/* User Answer */}
                     <div
-                      className={`p-3.5 rounded-xl border flex items-center justify-between ${
+                      className={`p-3.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
                         isCorrect
                           ? 'bg-emerald-50/70 border-emerald-200 text-emerald-900'
                           : isSkipped
@@ -324,27 +324,53 @@ export const ResultView: React.FC<ResultViewProps> = ({
                           : 'bg-rose-50/70 border-rose-200 text-rose-900'
                       }`}
                     >
-                      <span className="font-semibold text-xs text-slate-500">คำตอบของคุณ:</span>
-                      <span className="font-bold text-sm">
-                        {q.type === 'multiple_choice'
-                          ? ans?.selectedChoice !== undefined
-                            ? `ตัวเลือกที่ ${ans.selectedChoice + 1} (${q.choices?.[ans.selectedChoice]})`
-                            : '(ไม่ได้ตอบ)'
-                          : ans?.numericAnswer && ans.numericAnswer.trim() !== ''
-                          ? `${ans.numericAnswer} ${q.unit || ''}`
-                          : '(ไม่ได้ตอบ)'}
-                      </span>
+                      <span className="font-semibold text-xs text-slate-500 shrink-0">คำตอบของคุณ:</span>
+                      <div className="font-bold text-sm flex items-center gap-1.5 flex-wrap">
+                        {q.type === 'multiple_choice' ? (
+                          ans?.selectedChoice !== undefined ? (
+                            <span className="inline-flex items-center gap-1 flex-wrap">
+                              <span>ตัวเลือกที่ {ans.selectedChoice + 1}</span>
+                              {q.choices?.[ans.selectedChoice] && (
+                                <span className="inline-flex items-center font-normal">
+                                  (<MathRenderer content={q.choices[ans.selectedChoice]} />)
+                                </span>
+                              )}
+                            </span>
+                          ) : (
+                            <span className="text-slate-400 font-normal">(ไม่ได้ตอบ)</span>
+                          )
+                        ) : ans?.numericAnswer && ans.numericAnswer.trim() !== '' ? (
+                          <span className="inline-flex items-center gap-1">
+                            <MathRenderer content={ans.numericAnswer} />
+                            {q.unit && <span className="font-normal text-slate-600">{q.unit}</span>}
+                          </span>
+                        ) : (
+                          <span className="text-slate-400 font-normal">(ไม่ได้ตอบ)</span>
+                        )}
+                      </div>
                     </div>
 
                     {/* Correct Answer */}
-                    <div className="p-3.5 rounded-xl border bg-emerald-50/80 border-emerald-300 text-emerald-900 flex items-center justify-between">
-                      <span className="font-semibold text-xs text-emerald-700">คำตอบที่ถูกต้อง:</span>
-                      <span className="font-bold text-sm flex items-center gap-1.5">
-                        <Check className="w-4 h-4 text-emerald-600" />
-                        {q.type === 'multiple_choice'
-                          ? `ตัวเลือกที่ ${Number(q.correctAnswer) + 1} (${q.choices?.[Number(q.correctAnswer)]})`
-                          : `${q.correctAnswer} ${q.unit || ''}`}
-                      </span>
+                    <div className="p-3.5 rounded-xl border bg-emerald-50/80 border-emerald-300 text-emerald-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <span className="font-semibold text-xs text-emerald-700 shrink-0">คำตอบที่ถูกต้อง:</span>
+                      <div className="font-bold text-sm flex items-center gap-1.5 flex-wrap">
+                        <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                        {q.type === 'multiple_choice' ? (
+                          <span className="inline-flex items-center gap-1 flex-wrap">
+                            <span>ตัวเลือกที่ {Number(q.correctAnswer) + 1}</span>
+                            {q.choices?.[Number(q.correctAnswer)] && (
+                              <span className="inline-flex items-center font-normal">
+                                (<MathRenderer content={q.choices[Number(q.correctAnswer)]} />)
+                              </span>
+                            )}
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1">
+                            <MathRenderer content={String(q.correctAnswer)} />
+                            {q.unit && <span className="font-normal text-emerald-800">{q.unit}</span>}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
 
